@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>net.my</groupId>
+    <artifactId>Spring</artifactId>
+    <version>7</version>
+    <name>eShop Webapp</name>
+
+    <properties>
+        <jdk.version>1.7</jdk.version>
+        <spring.version>3.2.4.RELEASE</spring.version>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <packaging>war</packaging>
+
+    <dependencies>
+        <!-- Servlet API -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <!-- scope=provided значит, что зависимость будет добавлена
+            И в classpath компилятору,
+            И в classpath JVM при запуске тестов,
+            Но ___НЕ___ не в /lib при окончательном формировании артефакта-->
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+            <!-- scope=compile значит, что зависимость будет добавлена
+            И в classpath компилятору,
+            И в classpath JVM при запуске тестов,
+            И в /lib при окончательном формировании артефакта-->
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- Spring (Business Logic Container)-->
+        <!-- Core utilities used by other modules. Define this if -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <!-- Bean Factory and JavaBeans utilities (depends on spri -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${spring.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <!-- Application Context (depends on spring-core, spring-e -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+    <!--<build>-->
+        <!--<finalName>eshop</finalName>-->
+        <!---->
+    <!--</build>-->
+</project>

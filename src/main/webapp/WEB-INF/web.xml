@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+    <!--CONTROLLERS-->
+    <!--product-->
+    <servlet>
+        <servlet-name>productController</servlet-name>
+        <servlet-class>net.golovach.eshop.controller.ProductController</servlet-class>
+        </servlet>
+    <servlet-mapping>
+        <servlet-name>productController</servlet-name>
+        <url-pattern>/product.do</url-pattern>
+    </servlet-mapping>
+    <!--Product all-->
+    <servlet>
+        <servlet-name>productAll</servlet-name>
+        <servlet-class>net.golovach.eshop.controller.ProductAllController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>productAll</servlet-name>
+        <url-pattern>/productAll.do</url-pattern>
+    </servlet-mapping>
+    <!--add to bucket-->
+    <servlet>
+        <servlet-name>productAddToBucket</servlet-name>
+        <servlet-class>net.golovach.eshop.controller.ProductAddToBucketController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>productAddToBucket</servlet-name>
+        <url-pattern>/productAddToBucket.do</url-pattern>
+    </servlet-mapping>
+    <!--remove from to bucket-->
+    <servlet>
+        <servlet-name>productRemoveFromBucket</servlet-name>
+        <servlet-class>net.golovach.eshop.controller.ProductRemoveFromBucketController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>productRemoveFromBucket</servlet-name>
+        <url-pattern>/productRemoveFromBucket.do</url-pattern>
+    </servlet-mapping>
+
+    <!--mock-->
+    <servlet>
+        <servlet-name>mockController</servlet-name>
+        <servlet-class>net.golovach.eshop.controller.demo.DemoController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>mockController</servlet-name>
+        <url-pattern>/mock.do</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>MVCMockController</servlet-name>
+        <servlet-class>net.golovach.eshop.controller.demo.MVCDemoController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MVCMockController</servlet-name>
+        <url-pattern>/MVC</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>sessionDemoController</servlet-name>
+        <servlet-class>net.golovach.eshop.controller.demo.SessionDemoController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>sessionDemoController</servlet-name>
+        <url-pattern>/sessionMock.do</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>cookieDemoController</servlet-name>
+        <servlet-class>net.golovach.eshop.controller.demo.CookieDemoController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>cookieDemoController</servlet-name>
+        <url-pattern>/cookieMock.do</url-pattern>
+    </servlet-mapping>
+
+    <!--FILTERS-->
+    <!--processing time-->
+    <filter>
+        <filter-name>timeFilter</filter-name>
+        <filter-class>net.golovach.eshop.filter.ProcessingTimeFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>timeFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+
+
+
+    <!--request info-->
+    <filter>
+        <filter-name>infoFilter</filter-name>
+        <filter-class>net.golovach.eshop.filter.RequestInfoFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>infoFilter</filter-name>
+        <url-pattern>*.do</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+
+
+
+
+    <!--request info-->
+    <filter>
+        <filter-name>attributesToSessionFilter</filter-name>
+        <filter-class>net.golovach.eshop.filter.AddAttributesToSessionFilter</filter-class>
+        <init-param>
+            <param-name>filter-param-name-A</param-name>
+            <param-value>filter-param-value-A</param-value>
+        </init-param>
+        <init-param>
+            <param-name>filter-param-name-B</param-name>
+            <param-value>filter-param-value-B</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>attributesToSessionFilter</filter-name>
+        <servlet-name>mockController</servlet-name>
+    </filter-mapping>
+
+    <!--LISTENER-->
+    <listener>
+        <listener-class>net.golovach.eshop.listener.MyHttpSessionActivationListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>net.golovach.eshop.listener.MyHttpSessionAttributeListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>net.golovach.eshop.listener.MyHttpSessionBendingListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>net.golovach.eshop.listener.MyHttpSessionListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>net.golovach.eshop.listener.MyServletContextAttributeListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>net.golovach.eshop.listener.MyServletContextListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>net.golovach.eshop.listener.MyServletRequestAttributeListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>net.golovach.eshop.listener.MyServletRequestListener</listener-class>
+    </listener>
+
+    <!--Время жизни сессии в минутах с момента последнего доступа (использования) к сессии
+    (а не с момента создания)-->
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+</web-app>
+
+        <!--<filter>-->
+        <!--<filter-name>infoFilter</filter-name>-->
+        <!--<filter-class>net.golovach.eshop.filter.RequestInfoFilter</filter-class>-->
+        <!--</filter>-->
+        <!--<filter-mapping>-->
+        <!--<filter-name>infoFilter</filter-name>-->
+        <!--<url-pattern>/*</url-pattern>-->
+        <!--</filter-mapping>-->
